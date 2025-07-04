@@ -1,4 +1,3 @@
-Check if a String is a Palindrome
 #!/bin/bash 
 Palindrome () 
 {
