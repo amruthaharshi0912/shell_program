@@ -9,4 +9,4 @@ else
 echo "The string is not a palindrome" 
 fi
 }
-read -p "Enter a string: " str Palindrome "$str"
+read "Enter a string: " str Palindrome "$str"
