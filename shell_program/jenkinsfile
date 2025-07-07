@@ -1,0 +1,25 @@
+pipeline {
+    agent any
+    stages {
+        stage('Checkout') {
+            steps {
+                echo "Cloning the repo from GitHub..."
+                git branch: 'main',
+                    url: 'https://github.com/amruthaharshi0912/shell_program.git',
+                    credentialsId: 'jen_cred'
+                
+                echo "Checking directory structure..."
+                sh 'ls -R'
+            }
+        }
+
+        stage('Build WAR') {
+            steps {
+                dir('mywebapp') {
+                    sh 'mvn clean package'
+                    sh 'ls -l target'
+                }
+            }
+        }
+    }
+}
