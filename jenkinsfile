@@ -1,25 +1,30 @@
 pipeline {
     agent any
+
+    environment {
+        GIT_REPO = 'git@github.com:amruthaharshi0912/shell_program.git'
+        BRANCH = 'main'
+        GIT_CRED = '10cda533-f72c-4e58-bffc-461a9d232feb'
+    }
+
     stages {
         stage('Checkout') {
             steps {
-                echo "Cloning the repo from GitHub..."
-                git branch: 'main',
-                    url: 'https://github.com/amruthaharshi0912/shell_program.git',
-                    credentialsId: 'jen_cred'
-                
-                echo "Checking directory structure..."
-                sh 'ls -R'
+                git(
+                    url: "${GIT_REPO}",
+                    branch: "${BRANCH}",
+                    credentialsId: "${GIT_CRED}"
+                )
             }
         }
 
         stage('Build WAR') {
             steps {
-                dir('mywebapp') {
-                    sh 'mvn clean package'
-                    sh 'ls -l target'
+                dir('my-webapp') {
+                    sh 'mvn -B clean package'
                 }
             }
         }
-    }
+   }
 }
+
