@@ -4,7 +4,7 @@ pipeline {
         stage('Checkout') {
             steps {
                 echo "Cloning the repo from GitHub..."
-                git branch: 'feature',
+                git branch: 'main',
                     url: 'https://github.com/amruthaharshi0912/shell_program.git',
                     credentialsId: 'jen_cred'
                 
